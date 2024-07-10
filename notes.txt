@@ -1,0 +1,23 @@
+Swagger url :  http://localhost:8080/swagger-ui/index.html
+
+
+drop table course_registration;
+create table course_registration(
+    id serial primary key ,
+    first_name varchar(50),
+    last_name varchar(50),
+    date_of_birth date,
+    course_name varchar(50)
+);
+
+insert into course_registration(first_name, last_name, date_of_birth, course_name) values ('sajith','rajappan','1976-12-19','AI');
+
+select * from course_registration;
+
+-- update,delete
+
+-- CRUD : create , read , update delete
+
+-- READ : DB - API - UI
+
+-- CREATE/UPDATE UI - API - DB

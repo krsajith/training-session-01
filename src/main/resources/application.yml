@@ -1,0 +1,19 @@
+server:
+  servlet:
+    context-path: /training
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=training
+    username: postgres
+    password: password
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    properties:
+      hibernate:
+        proc:
+          param_null_passing: true

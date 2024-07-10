@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .registration-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+        }
+
+        input,
+        select {
+            padding: .25rem;
+        }
+    </style>
+</head>
+
+<body>
+<!-- first_name
+last_name
+date_of_birth
+course_name -->
+
+<div class="registration-form">
+    <div class="field">
+        <label for="firstName">First Name</label>
+        <input id="firstName" />
+    </div>
+    <div class="field">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" />
+    </div>
+
+    <div class="field">
+        <label for="dateOfBirth">Date of birth</label>
+        <input id="dateOfBirth" type="date" />
+    </div>
+
+    <div class="field">
+        <label for="courseName">Course Name</label>
+        <select id="courseName">
+            <option value="B-Tech CS">B-Tech CS</option>
+            <option value="B-Tech Mech">B-Tech Mech</option>
+        </select>
+    </div>
+
+    <button onclick="register()">Regiter</button>
+</div>
+<script>
+    function register(){
+        const myHeaders = new Headers();
+        myHeaders.append("accept", "*/*");
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            "firstName": document.getElementById("firstName").value,
+            "lastName": document.getElementById("lastName").value,
+            "dateOfBirth": document.getElementById("dateOfBirth").value,
+            "courseName": document.getElementById("courseName").value
+        });
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        fetch("http://localhost:8080/course-registration", requestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.error(error));
+    }
+</script>
+</body>
+
+</html>
